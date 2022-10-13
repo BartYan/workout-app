@@ -1,0 +1,15 @@
+@mixin center {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari 4+ */
+    -moz-transform: translate(-50%, -50%);
+    /* Fx 5+ */
+    -o-transform: translate(-50%, -50%);
+    /* Opera 12+ */
+    -ms-transform: translate(-50%, -50%);
+    /*IE11 & Microsoft Edge*/
+    transform: translate(-50%, -50%);
+}
