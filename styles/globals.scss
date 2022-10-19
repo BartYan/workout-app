@@ -17,6 +17,10 @@ a {
   padding: 0;
 }
 
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

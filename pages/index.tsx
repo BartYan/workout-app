@@ -1,13 +1,25 @@
 import type { NextPage } from 'next'
+import { useState, useEffect }from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, selectCount } from '../slices/counterSlice'
 
+import Editable from '../src/components/editable/Editable'
+
 const Home: NextPage = () => {
   const count = useSelector(selectCount)
   const dispatch = useDispatch();
+
+  const [st, setSt] = useState('')
+  const handleChange = (e) => {
+    setSt(e)
+  }
+
+  useEffect(() => {
+    console.log(st)
+  }, [st]);
 
   return (
     <div className={styles.container}>
@@ -18,9 +30,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Workout App
-        </h1>
+        <Editable handleChange={handleChange}>
+          <h1 className={styles.title}>
+            Workout Appaaa
+          </h1>
+        </Editable>
 
         <p className={styles.description}>
           exaxmple text
