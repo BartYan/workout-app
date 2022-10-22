@@ -7,15 +7,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, selectCount } from '../slices/counterSlice'
 
 import Editable from '../src/components/editable/Editable'
+import List from '../src/components/training/List/List'
 
 const Home: NextPage = () => {
   const count = useSelector(selectCount)
   const dispatch = useDispatch();
 
-  const [st, setSt] = useState('')
-  const handleChange = (e) => {
-    setSt(e)
-  }
+  const [st, setSt] = useState('');
+  const handleChange = (e) => setSt(e);
 
   useEffect(() => {
     console.log(st)
@@ -32,19 +31,24 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <Editable handleChange={handleChange}>
           <h1 className={styles.title}>
-            Workout Appaaa
+            App Name
           </h1>
         </Editable>
-
         <p className={styles.description}>
-          exaxmple text
+          Hi, Start your training now!
         </p>
-        <p>
+        {/* <p>
           redux test {count}
         </p>
         <button onClick={() => dispatch(increment())}>inc</button>
-        <button onClick={() => dispatch(decrement())}>dec</button>
+        <button onClick={() => dispatch(decrement())}>dec</button> */}
       </main>
+
+      <section className='section'>
+        <div className='wrapper'>
+          <List/>
+        </div>
+      </section>
 
       <footer className={styles.footer}>
         <a
