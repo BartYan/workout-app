@@ -1,5 +1,7 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectWorkout } from '../../../../slices/workoutSlice';
 
 interface PropTypes {
     workout: any;
@@ -12,8 +14,10 @@ interface PropTypes {
 };
 
 const ListItems: NextPage<PropTypes> = ({workout, handleOnEdit, handleOnRemove, handleOnChange,}) => {
-    console.log('ListItem')
-    const todoItem = workout.map((todo, index) => {
+
+    const workoutR = useSelector(selectWorkout)
+
+    const todoItem = workoutR.map((todo, index) => {
       return (
         <div key={todo.id} className="">
           <div className="">
@@ -46,15 +50,16 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnEdit, handleOnRemove, 
     useEffect(() => {
         console.log('LIST ITEMS WORKOUT',workout)
         console.log('LIST ITEMS todoItem',todoItem)
+        console.log('LIST ITEMS workoutR',workoutR)
     }, [workout]);
 
     return (
       <div className="test itemList">
         <hr />
-        {workout.length === 0 && (
+        {workoutR.length === 0 && (
           <h3 className="">Let's get some work done!</h3>
         )}
-        {workout.length > 0 && todoItem}
+        {workoutR.length > 0 && todoItem}
       </div>
     );
 }

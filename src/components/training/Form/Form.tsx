@@ -11,7 +11,7 @@ interface PropTypes {
 };
 
 const Form: NextPage<PropTypes> = ({ workout, newItem, handleChange, handleSubmit }) => {
-    console.log('Form');
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>

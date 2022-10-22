@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 import { useState, useEffect }from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { save, selectWorkout } from '../../../../slices/workoutSlice'
 
 import styles from '../styles/Home.module.scss';
 import Form from '../Form/Form';
@@ -12,11 +14,13 @@ interface ItemTypes {
 };
 
 const List: NextPage = () => {
+    const workoutR = useSelector(selectWorkout)
+    const dispatch = useDispatch();
 
     const [workout, setWorkout] = useState<ItemTypes | any>([]);
     const [newItem, setNewItem] = useState('');
 
-    const handleChange = (e) =>  setNewItem(e.target.value);
+    const handleChange = (e) => setNewItem(e.target.value);
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -25,8 +29,8 @@ const List: NextPage = () => {
       if (newItem === "") {
         return;
       }
-
       setNewItem('');
+      console.log(`workouuuuut 1`, workout)
       setWorkout([
         ...workout,
         {
@@ -73,6 +77,10 @@ const List: NextPage = () => {
       });
       setWorkout({ todos });
     }
+
+    useEffect(() => {      
+      dispatch(save(workout));
+  }, [workout]);
 
     return (
         <>
