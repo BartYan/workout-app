@@ -2,48 +2,44 @@ import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWorkout } from '../../../../slices/workoutSlice';
+import Editable from '../../../components/editable/Editable'
 
 interface PropTypes {
     workout: any;
     // handleOnChange: (e, index) => void;
     // handleOnRemove: (index) => void;
     // handleOnEdit: (index) => void;
-    handleOnChange: any;
     handleOnRemove: any;
-    handleOnEdit: any;
+    handleEdit: any;
+    // handleOnEdit: any;
 };
 
-const ListItems: NextPage<PropTypes> = ({workout, handleOnEdit, handleOnRemove, handleOnChange,}) => {
+const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) => {
 
     const workoutR = useSelector(selectWorkout)
 
     const todoItem = workoutR.map((todo, index) => {
       return (
-        <div key={todo.id} className="">
-          <div className="">
-            <div className="todoTitle">
-              <span>
-                {todo.title}
-              </span>
-            </div>
-            <div>
-              <div
-                className=""
-                aria-hidden="true"
-                onClick={() => handleOnEdit(index)}
-              >
-                Edit
+        <Editable handleChange={handleEdit}>
+          <div key={todo.id} className="">
+            <div className="">
+              <div className="todoTitle">
+                <span>
+                  {todo.title}
+                </span>
               </div>
-              <div
-                onClick={() => handleOnRemove(index)}
-                className=""
-                aria-hidden="true"
-              >
-                remove
+              <div>
+                <div
+                  onClick={() => handleOnRemove(index)}
+                  className=""
+                  aria-hidden="true"
+                >
+                  remove
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Editable>
       );
     });
     
@@ -51,7 +47,7 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnEdit, handleOnRemove, 
         console.log('LIST ITEMS WORKOUT',workout)
         console.log('LIST ITEMS todoItem',todoItem)
         console.log('LIST ITEMS workoutR',workoutR)
-    }, [workout]);
+    }, [workout, todoItem, workoutR]);
 
     return (
       <div className="test itemList">

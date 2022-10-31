@@ -9,7 +9,7 @@ import ListItems from '../ListItems/ListItems';
 
 interface ItemTypes {
     id: number;
-    title: any;
+    title: string;
     isCompleted: boolean;
 };
 
@@ -22,6 +22,21 @@ const List: NextPage = () => {
 
     const handleChange = (e) => setNewItem(e.target.value);
 
+    const [st, setSt] = useState('');
+    // const handleEdit = (e) => setSt(e);
+    const handleEdit = (e) => {
+      setSt(e);
+      let todos = [...workout];
+      todos.filter(todo => {
+        if (todo.id === e.index + 1) {
+          console.log('todo.title',todo.title)
+          todo.title = st;
+        }
+        return todo;
+      });
+      setWorkout(todos);
+    };
+
     const handleSubmit = (e) => {
       e.preventDefault();
     
@@ -30,7 +45,6 @@ const List: NextPage = () => {
         return;
       }
       setNewItem('');
-      console.log(`workouuuuut 1`, workout)
       setWorkout([
         ...workout,
         {
@@ -41,46 +55,28 @@ const List: NextPage = () => {
       ]);
     };
 
-    const toggleCompleted = (e, index) => {
-      const completed = workout.filter((item) => {
-        if (item.id === index + 1) {
-          item.isCompleted = e.target.checked;
-        }
-        return item;
-      });
-      setWorkout(completed)
-    };
-
     const removeItem = (index) => {
-      console.log('removeItem workout', workout)
-      const newWorkout = workout;
-      newWorkout.splice(index, 1);
+      const newWorkout = [...workout];
+      newWorkout.splice(index, 1)
       setWorkout(newWorkout);
-      console.log('removeItem workout after', workout)
     };
-    // const removeItem = (index) => {
-    //   const { todos } = workout;
-    //   todos.splice(index, 1);
-    //   setWorkout({
-    //     todos,
-    //   });
-    // };
 
-    const editItem = (index) => {
-      const newWorkout = prompt('Let\'s make some changes');
-      const todos = workout;
-      todos.filter(todo => {
-        if (todo.id === index + 1) {
-          todo.title = newWorkout;
-        }
-        return todo;
-      });
-      setWorkout({ todos });
-    }
+    // const editItem = (index) => {
+    //   const newWorkout = prompt('Let\'s make some changes');
+    //   let todos = [...workout];
+    //   todos.filter(todo => {
+    //     if (todo.id === index + 1) {
+    //       console.log('todo.title',todo.title)
+    //       todo.title = newWorkout;
+    //     }
+    //     return todo;
+    //   });
+    //   setWorkout(todos);
+    // }
 
     useEffect(() => {      
       dispatch(save(workout));
-  }, [workout]);
+    }, [workout]);
 
     return (
         <>
@@ -92,9 +88,9 @@ const List: NextPage = () => {
             />
             <ListItems
                 workout={workout}
-                handleOnChange={toggleCompleted}
                 handleOnRemove={removeItem}
-                handleOnEdit={editItem}
+                handleEdit={handleEdit}
+                // handleOnEdit={editItem}
             />
         </>
     )
