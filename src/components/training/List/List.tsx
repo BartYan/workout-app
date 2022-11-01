@@ -20,21 +20,28 @@ const List: NextPage = () => {
     const [workout, setWorkout] = useState<ItemTypes | any>([]);
     const [newItem, setNewItem] = useState('');
 
+
+
     const handleChange = (e) => setNewItem(e.target.value);
 
-    const [st, setSt] = useState('');
+    // const [st, setSt] = useState('');
     // const handleEdit = (e) => setSt(e);
-    const handleEdit = (e) => {
-      setSt(e);
-      let todos = [...workout];
-      todos.filter(todo => {
-        if (todo.id === e.index + 1) {
-          console.log('todo.title',todo.title)
-          todo.title = st;
+  
+    const handleEdit = (el, value) => {
+      console.log('el', el); //ref element
+      console.log('el.current.id', el.current.id); //ref el id
+      console.log('value', value); //new value of ref element
+
+      // let itemsList = Object.freeze([...workout]); //not working
+      let itemsList = [...workout]; //[workout, setWorkout] workout list
+      itemsList.filter(item => {
+        if (item.id == el.current.id) {
+          console.log('item.title', item.title)
+          item.title = value;
         }
-        return todo;
+        return item;
       });
-      setWorkout(todos);
+      setWorkout(itemsList); //new workout with edited values
     };
 
     const handleSubmit = (e) => {

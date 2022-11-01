@@ -21,7 +21,7 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) =
     const todoItem = workoutR.map((todo, index) => {
       return (
         <Editable handleChange={handleEdit}>
-          <div key={todo.id} className="">
+          <div key={todo.id} id={todo.id} className="">
             <div className="">
               <div className="todoTitle">
                 <span>

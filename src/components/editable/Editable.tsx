@@ -1,3 +1,4 @@
+import { handleClientScriptLoad } from "next/script";
 import React, { useRef, useEffect } from "react";
 
 interface Props {
@@ -14,15 +15,10 @@ const Editable: React.FC<Props> = ({ handleChange, children }): React.ReactEleme
   const onMouseUp = () => {
     const value = element.current?.value || element.current?.innerText;
     if (handleChange) {
-      handleChange(value);
+      handleChange(element, value);
     }
   };
-  useEffect(() => {
-    const value = element.current?.value || element.current?.innerText;
-    if (handleChange) {
-      handleChange(value);
-    }
-  }, []);
+  
   elements = React.cloneElement(elements[0], {
     contentEditable: true,
     suppressContentEditableWarning: true,
