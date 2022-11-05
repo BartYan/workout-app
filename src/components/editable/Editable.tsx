@@ -1,9 +1,9 @@
 import { handleClientScriptLoad } from "next/script";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 
 interface Props {
     children?: JSX.Element | JSX.Element[],
-    handleChange: (value: any) => void;
+    handleChange: (element: any, value: any) => void;
 }
 
 const Editable: React.FC<Props> = ({ handleChange, children }): React.ReactElement => {
@@ -12,7 +12,7 @@ const Editable: React.FC<Props> = ({ handleChange, children }): React.ReactEleme
   if (elements.length > 1) {
     throw Error("Can't have more than one child");
   }
-  const onMouseUp = () => {
+  const onBlur = () => {
     const value = element.current?.value || element.current?.innerText;
     if (handleChange) {
       handleChange(element, value);
@@ -23,7 +23,7 @@ const Editable: React.FC<Props> = ({ handleChange, children }): React.ReactEleme
     contentEditable: true,
     suppressContentEditableWarning: true,
     ref: element,
-    onKeyUp: onMouseUp
+    onBlur: onBlur
   });
   return elements;
 };

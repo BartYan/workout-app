@@ -30,3 +30,9 @@ a {
     background: black;
   }
 }
+
+.body {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(133deg, rgba(38,222,129,1) 0%, rgba(136,84,208,1) 100%);
+}

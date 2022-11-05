@@ -1,69 +1,26 @@
 import type { NextPage } from 'next'
-import { useState, useEffect }from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, selectCount } from '../slices/counterSlice'
 
-import Editable from '../src/components/editable/Editable'
-import List from '../src/components/training/List/List'
+import styles from '../styles/Home.module.scss';
+import List from '../src/components/form/List/List'
 
 const Home: NextPage = () => {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch();
-
-  const [st, setSt] = useState('');
-  const handleChange = (e) => setSt(e);
-
-  useEffect(() => {
-    console.log(st)
-  }, [st]);
-
   return (
-    <div className={styles.container}>
+    <div className="body">
       <Head>
-        <title>Workout App</title>
-        <meta name="description" content="Application for creating training sessions" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>💪</title>
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <meta name="description" content="Appka Treningowa" />
       </Head>
 
-      <main className={styles.main}>
-        <Editable handleChange={handleChange}>
-          <h1 className={styles.title}>
-            App Name
-          </h1>
-        </Editable>
-        <p className={styles.description}>
-          Hi, Start your training now!
-        </p>
-        {/* <p>
-          redux test {count}
-        </p>
-        <button onClick={() => dispatch(increment())}>inc</button>
-        <button onClick={() => dispatch(decrement())}>dec</button> */}
+      <main className="main-wrapper">
+          <List/>
       </main>
 
-      <section className='section'>
-        <div className='wrapper'>
-          <List/>
-        </div>
-      </section>
-
       <footer className={styles.footer}>
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          footer
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+        footer
       </footer>
     </div>
   )
 }
-
 export default Home
