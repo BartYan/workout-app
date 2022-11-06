@@ -24,7 +24,7 @@ const List: NextPage = () => {
     const handleEdit = (el: { current: { id: number; }; }, value: any) => {
 
       let itemsList = [...workout];
-      workout.filter((item, index) => {
+      workout.filter((item: any, index: any) => {
         if (item.id == el.current.id) {
           const newItem = {
             id: item.id,

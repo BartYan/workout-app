@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useEffect } from 'react';
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWorkout } from '../../../../slices/workoutSlice';
 import Editable from '../../editable/Editable';
@@ -15,11 +15,11 @@ interface PropTypes {
 const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) => {
 
     const workoutR = useSelector(selectWorkout)
-    const todoItem = workoutR.map((todo, index) => {
+    const todoItem = workoutR.map((todo: any, index: any) => {
       return (
-        <div className={styles.list__item}>
+        <div key={todo.id} className={styles.list__item}>
           <Editable handleChange={handleEdit}>
-            <div key={todo.id} id={todo.id} className={styles.list__item_text}>
+            <div id={todo.id} className={styles.list__item_text}>
                 <span>
                   {todo.title}
                 </span>

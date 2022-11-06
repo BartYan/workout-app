@@ -5,8 +5,8 @@ import styles from '../../../../styles/Home.module.scss';
 interface PropTypes {
     workout: any;
     newItem: string;
-    handleChange: (e) => void;
-    handleSubmit: (e) => void;
+    handleChange: any;
+    handleSubmit: any;
 };
 
 const Form: NextPage<PropTypes> = ({ workout, newItem, handleChange, handleSubmit }) => {
