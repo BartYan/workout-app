@@ -27,6 +27,7 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) =
           </Editable>
           <div className={styles.list__item_delete}>
             <button
+              className={`${styles.btn} ${styles.btn__red}`}
               onClick={() => handleOnRemove(index)}
               aria-hidden="true"
               type='button'

@@ -8,11 +8,16 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 4rem;
+    padding: 4rem 4rem 0;
     background: $gray;
     border-radius: 1rem;
 
     color: $dark;
+
+    @media only screen and (max-width: 768px) {
+        width: 90%;
+        padding: 2rem 2rem 0;
+    }
 
     .items__wrapper {
         width: 100%;
@@ -25,26 +30,9 @@
         justify-content: space-between;
         align-items: center;
 
-        &_text {            
+        &_text { 
             width: 100%;
             cursor: text;
-        }
-        &_delete {
-            button {
-                @include flex-center;
-                padding: 0.5rem;
-                color: $white;
-                background-color: $dark;
-                border: none;
-                border-radius: 5px;
-                transition: 0.1s all ease-in-out;
-                cursor: pointer;
-
-                &:hover {
-                    transform: scale(1.06);
-                    background-color: $red;
-                }
-            }
         }
     }
 }

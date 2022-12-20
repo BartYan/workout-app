@@ -6,6 +6,7 @@ import { save } from '../../../../slices/workoutSlice';
 import styles from '../../../../styles/Home.module.scss';
 import Form from '../Form/Form';
 import ListItems from '../ListItems/ListItems';
+import AddItem from '../AddItem/AddItem';
 
 interface ItemTypes {
     id: number;
@@ -62,7 +63,7 @@ const List: NextPage = () => {
       setWorkout(newWorkout);
     };
 
-    useEffect(() => {      
+    useEffect(() => {
       dispatch(save(workout));
     }, [workout]);
 
@@ -79,6 +80,7 @@ const List: NextPage = () => {
                 handleOnRemove={removeItem}
                 handleEdit={handleEdit}
             />
+            <AddItem />
         </div>
     )
 }
