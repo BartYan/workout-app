@@ -1,6 +1,7 @@
 .btn {
     @include flex-center;
-    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
     color: $white;
     background-color: $light-gray;
     border: none;
@@ -29,6 +30,13 @@
         &:hover {
             transform: scale(1.06);
             background-color: $red;
+        }
+    }
+    &__purple {
+        background-color: $light-purple;
+        &:hover {
+            transform: scale(1.06);
+            background-color: $purple;
         }
     }
 }

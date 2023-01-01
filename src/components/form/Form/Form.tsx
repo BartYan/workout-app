@@ -14,7 +14,7 @@ const Form: NextPage<PropTypes> = ({ workout, newItem, handleChange, handleSubmi
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.input__container}>
-                <input 
+                <input
                 type="text"
                 placeholder="Dodaj element z tekstem"
                 autoComplete="off"

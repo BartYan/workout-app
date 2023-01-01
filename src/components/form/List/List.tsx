@@ -53,6 +53,7 @@ const List: NextPage = () => {
           id: (workoutLength += 1),
           title: newItem,
           isCompleted: false,
+          // type: 'head',
         },
       ]);
     };
