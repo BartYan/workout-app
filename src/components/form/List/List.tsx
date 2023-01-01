@@ -30,7 +30,8 @@ const List: NextPage = () => {
           const newItem = {
             id: item.id,
             title: value,
-            isCompleted: item.isCompleted
+            isCompleted: item.isCompleted,
+            type: 'head'
           }
           itemsList.splice(index, 1, newItem);
         }
@@ -53,7 +54,7 @@ const List: NextPage = () => {
           id: (workoutLength += 1),
           title: newItem,
           isCompleted: false,
-          // type: 'head',
+          type: 'head',
         },
       ]);
     };

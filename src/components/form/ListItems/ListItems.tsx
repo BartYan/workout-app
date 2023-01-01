@@ -19,6 +19,10 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) =
 
     const workoutR = useSelector(selectWorkout)
 
+    useEffect(() => {
+      console.log('workoutR ListItems', workoutR)
+    }, [workoutR]);
+
     return (
       <div className={styles.items__wrapper}>
         {workoutR.length === 0 && (
@@ -28,11 +32,25 @@ const ListItems: NextPage<PropTypes> = ({workout, handleOnRemove, handleEdit}) =
         )}
 
         {workoutR.length > 0 && (
-            <HeadItem 
-            handleOnRemove={handleOnRemove} 
-            handleEdit={handleEdit}
-            />
+          workoutR.map((todo: any, index: any) => {
+            
+            if(todo.type == 'head') {
+              return (
+                <>
+                  <HeadItem
+                    todo={todo}
+                    index={index}
+                    handleOnRemove={handleOnRemove} 
+                    handleEdit={handleEdit}
+                  />
+                </>
+              )
+            }
+
+          })
         )}
+
+        
       </div>
     );
 }
